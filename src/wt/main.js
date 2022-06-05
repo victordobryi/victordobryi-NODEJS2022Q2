@@ -17,13 +17,25 @@ export const performCalculations = async () => {
     });
     resultsArr.push(
       new Promise((res, rej) => {
-        worker.on('message', (result) => {
-          res(`${currentNum}th Fibonacci No: ${result}`);
-        });
+        worker.on('message', (result) =>
+          res({
+            status: 'resolved',
+            data: result,
+          })
+        );
+
+        worker.on('error', (err) =>
+          rej({
+            status: 'error',
+            data: null,
+          })
+        );
       })
     );
   }
-  await Promise.all(resultsArr).then((res) => console.log(res));
+  await Promise.allSettled(resultsArr).then((res) => {
+    res.map((value) => console.log(value.value ? value.value : value.reason));
+  });
 };
 
 performCalculations();
