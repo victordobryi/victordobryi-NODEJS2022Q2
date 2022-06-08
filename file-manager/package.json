@@ -1,0 +1,21 @@
+{
+  "name": "victordobryi-nodejs2022q2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/victordobryi/victordobryi-NODEJS2022Q2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/victordobryi/victordobryi-NODEJS2022Q2/issues"
+  },
+  "homepage": "https://github.com/victordobryi/victordobryi-NODEJS2022Q2#readme"
+}
