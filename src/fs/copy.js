@@ -1,33 +1,19 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { mkdir, readdir, copyFile } from 'fs/promises';
+import { getPathFromFiles } from '../utils/getPathFromFiles.js';
 
 export const copy = async () => {
-  if (fs.existsSync(`${__dirname + '/files_copy/'}`)) {
-    throw new Error('File already exists');
-  } else {
-    fs.mkdir(`${__dirname + '/files_copy/'}`, (err) => {
-      if (err) {
-        throw new Error(err.message);
-      }
-    });
+  const srcFolder = getPathFromFiles(import.meta.url, './files');
+  const destinationFolder = getPathFromFiles(import.meta.url, '', './files_copy');
+
+  try {
+    await mkdir(destinationFolder);
+    const dirFiles = await readdir(srcFolder);
+    await Promise.all(
+      dirFiles.map((i) => copyFile(`${srcFolder}/${i}`, `${destinationFolder}/${i}`))
+    );
+  } catch (error) {
+    throw error;
   }
-  fs.readdir(`${__dirname + '/files'}`, (err, files) => {
-    if (err) {
-      throw new Error(err.message);
-    } else {
-      files.map((file) => {
-        fs.copyFile(__dirname + `/files/${file}`, __dirname + `/files_copy/${file}`, (err) => {
-          if (err) {
-            throw new Error(err.message);
-          }
-        });
-      });
-    }
-  });
 };
 
 copy();

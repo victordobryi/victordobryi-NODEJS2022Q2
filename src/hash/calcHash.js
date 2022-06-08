@@ -1,20 +1,16 @@
-import fs from 'fs';
+import { readFile } from 'fs/promises';
 import crypto from 'crypto';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { getPathFromFiles } from '../utils/getPathFromFiles.js';
 
 export const calculateHash = async () => {
-  fs.readFile(__dirname + '/files/fileToCalculateHashFor.txt', 'utf-8', (err, data) => {
-    if (err) {
-      throw new Error(err.message);
-    } else {
-      const hash = crypto.createHash('sha256').update(data).digest('hex');
-      console.log(hash);
-    }
-  });
+  const src = getPathFromFiles(import.meta.url, '/files', 'fileToCalculateHashFor.txt');
+  try {
+    const file = await readFile(src);
+    const hash = crypto.createHash('sha256').update(file).digest('hex');
+    console.log(hash);
+  } catch (error) {
+    throw error;
+  }
 };
 
 calculateHash();

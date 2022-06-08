@@ -1,9 +1,15 @@
 export const parseArgs = () => {
-  process.argv.map((item, i, arr) => {
-    item.match(/--[a-zA-Z]/) && arr[i + 1] && !arr[i + 1].match(/--[a-zA-Z]/)
-      ? console.log(`${item.replace('--', '')} is ${arr[i + 1]}`)
-      : null;
-  });
+  const userInputArgs = process.argv.slice(2);
+  const cliArguments = userInputArgs.reduce((acc, arg, index, arr) => {
+    const valueCandidate = arr[index + 1];
+    if (valueCandidate && arg.startsWith('--')) {
+      const transformedArgs = arg.slice(2);
+      const cliArgumentsTransformed = `${transformedArgs} is ${valueCandidate}`;
+      acc.push(cliArgumentsTransformed);
+    }
+    return acc;
+  }, []);
+  console.log(cliArguments.join(', '));
 };
 
 parseArgs();

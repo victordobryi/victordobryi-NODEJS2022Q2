@@ -10,7 +10,7 @@
     "files:delete": "node src/fs/delete.js",
     "files:list": "node src/fs/list.js",
     "files:read": "node src/fs/read.js",
-    "cli:args": "node src/cli/args.js --propName value --prop2Name value2",
+    "cli:args": "node src/cli/args.js --propName value --prop2Name value2 ",
     "cli:env": "set RSS_name1=value1 && set RSS_name2=value2 && node src/cli/env.js",
     "modules:cjsToEsm": "node src/modules/cjsToEsm.mjs",
     "hash:calcHash": "node src/hash/calcHash.js",

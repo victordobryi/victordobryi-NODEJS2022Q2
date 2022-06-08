@@ -1,18 +1,14 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { readdir } from 'fs/promises';
+import { getPathFromFiles } from '../utils/getPathFromFiles.js';
 
 export const list = async () => {
-  fs.readdir(__dirname + '/files', (err, files) => {
-    if (err) {
-      throw new Error(err.message);
-    } else {
-      console.log(files);
-    }
-  });
+  const src = getPathFromFiles(import.meta.url, '/files');
+  try {
+    const files = await readdir(src);
+    console.log(files);
+  } catch (error) {
+    throw error;
+  }
 };
 
 list();
