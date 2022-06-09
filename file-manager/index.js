@@ -1,24 +1,21 @@
-import { getGreetingPhrase } from './utils/getGreetingPhrase.js';
-import { getName } from './utils/getName.js';
-import ReadLine from 'readline';
-import { stdin, stdout } from 'process';
-
-const readline = ReadLine.createInterface({
-  input: stdin,
-  output: stdout,
-});
+import os from 'os';
+import { getGreetingPhrase } from './src/data/getGreetingPhrase.js';
+import { getName } from './src/data/getName.js';
+import { getWorkDirr } from './src/data/getWorkDirr.js';
+import { startReadlineProcess } from './utils/readline.js';
+import { chdir } from 'process';
 
 const fileManager = () => {
   const userName = getName();
   const greetingPhrase = getGreetingPhrase(userName);
-  readline.on('line', (line) => {
-    if (line === 'get') {
-      console.log('Ты нажал гет');
-    } else if (line === 'gat') {
-      console.log('Ты нажал гfт');
-    }
+  const homeDir = os.homedir();
+  const currentDir = chdir(homeDir);
+  const pathMessage = getWorkDirr(homeDir);
+
+  startReadlineProcess().catch((err) => {
+    console.error('Operation failed');
   });
-  console.log(greetingPhrase);
+  console.log(greetingPhrase + '\n' + pathMessage);
 };
 
 fileManager();
