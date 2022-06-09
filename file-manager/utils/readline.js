@@ -4,6 +4,9 @@ import { up } from '../src/navigation/up.js';
 import { cd } from '../src/navigation/cd.js';
 import { getByePhrase } from '../src/data/getByePhrase.js';
 import { getName } from '../src/data/getName.js';
+import { ls } from '../src/navigation/ls.js';
+import { cat } from '../src/operation/cat.js';
+import { getOtherArgs } from './getOtherArgs.js';
 
 export const readline = ReadLine.createInterface({
   input: stdin,
@@ -20,8 +23,13 @@ export const startReadlineProcess = async () => {
             up();
             break;
           case 'cd':
-            const currentPath = command[1] || '';
-            cd(currentPath);
+            cd(getOtherArgs(command));
+            break;
+          case 'ls':
+            ls();
+            break;
+          case 'cat':
+            cat(getOtherArgs(command));
             break;
           case 'exit':
           case '.exit':
