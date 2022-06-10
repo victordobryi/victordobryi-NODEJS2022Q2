@@ -12,9 +12,7 @@ const fileManager = () => {
   const pathMessage = getWorkDirr(homeDir);
   const currentDir = chdir(homeDir);
 
-  startReadlineProcess().catch((err) => {
-    console.error('Operation failed');
-  });
+  startReadlineProcess();
   console.log(greetingPhrase + '\n' + pathMessage);
 };
 

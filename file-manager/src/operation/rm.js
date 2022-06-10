@@ -10,6 +10,6 @@ export const rm = async (src) => {
     console.log('Success!');
     console.log(getWorkDirr(process.cwd()));
   } catch (error) {
-    throw error;
+    console.log('Operation failed');
   }
 };

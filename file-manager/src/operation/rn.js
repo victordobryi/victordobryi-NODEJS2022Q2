@@ -15,6 +15,6 @@ export const rn = async (props) => {
     console.log('Success!');
     console.log(getWorkDirr(process.cwd()));
   } catch (error) {
-    throw error;
+    console.log('Operation failed');
   }
 };

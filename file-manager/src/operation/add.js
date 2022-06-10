@@ -1,14 +1,18 @@
 import path from 'path';
-import { writeFile } from 'fs/promises';
 import { getWorkDirr } from '../data/getWorkDirr.js';
+import { createWriteStream } from 'fs';
 
 export const add = async (fileName) => {
   const src = path.join(process.cwd(), fileName);
   try {
-    await writeFile(src, '', { flag: 'wx' });
-    console.log('Success!');
-    console.log(getWorkDirr(process.cwd()));
+    const ws = await createWriteStream(src);
+    ws.write('');
+    ws.end();
+    ws.on('finish', () => {
+      console.log('Success!');
+      console.log(getWorkDirr(process.cwd()));
+    });
   } catch (error) {
-    throw error;
+    console.log('Operation failed');
   }
 };

@@ -8,6 +8,6 @@ export const ls = async () => {
     console.log(files);
     console.log(getWorkDirr(process.cwd()));
   } catch (error) {
-    throw error;
+    console.log('Operation failed');
   }
 };
