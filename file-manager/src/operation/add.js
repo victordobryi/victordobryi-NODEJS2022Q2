@@ -9,7 +9,10 @@ export const add = async (fileName) => {
     ws.write('');
     ws.end();
     ws.on('finish', () => {
-      console.log('Success!');
+      console.log(getWorkDirr(process.cwd()));
+    });
+    ws.on('error', () => {
+      console.log('Operation failed');
       console.log(getWorkDirr(process.cwd()));
     });
   } catch (error) {

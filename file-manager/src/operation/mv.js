@@ -7,9 +7,9 @@ export const mv = async (props) => {
   try {
     await cp(props);
     await rm(pathToFile);
-    console.log('Success!');
-    console.log(getWorkDirr(process.cwd()));
   } catch (error) {
     console.log('Operation failed');
+  } finally {
+    console.log(getWorkDirr(process.cwd()));
   }
 };

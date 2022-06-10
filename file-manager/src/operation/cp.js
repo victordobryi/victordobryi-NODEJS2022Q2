@@ -5,11 +5,11 @@ import { getWorkDirr } from '../data/getWorkDirr.js';
 
 export const cp = async (props) => {
   const [pathToFile, pathToNewDirrectory] = props.split(' ');
-  const file = getPath(pathToFile);
-  const currentDirrectory = path.join(getPath(pathToNewDirrectory), path.basename(file));
-  const isDirr = (await lstat(file)).isDirectory();
 
   try {
+    const file = getPath(pathToFile);
+    const currentDirrectory = path.join(getPath(pathToNewDirrectory), path.basename(file));
+    const isDirr = (await lstat(file)).isDirectory();
     if (isDirr) {
       await mkdir(currentDirrectory);
       const dirFiles = await readdir(file);
@@ -17,9 +17,9 @@ export const cp = async (props) => {
     } else {
       await copyFile(file, currentDirrectory);
     }
-    console.log('Success!');
-    console.log(getWorkDirr(process.cwd()));
   } catch (error) {
     console.log('Operation failed');
+  } finally {
+    console.log(getWorkDirr(process.cwd()));
   }
 };

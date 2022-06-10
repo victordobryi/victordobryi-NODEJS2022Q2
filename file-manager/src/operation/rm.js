@@ -7,9 +7,9 @@ export const rm = async (src) => {
 
   try {
     await remove(file, { recursive: true });
-    console.log('Success!');
-    console.log(getWorkDirr(process.cwd()));
   } catch (error) {
     console.log('Operation failed');
+  } finally {
+    console.log(getWorkDirr(process.cwd()));
   }
 };

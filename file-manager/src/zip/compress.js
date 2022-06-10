@@ -6,10 +6,10 @@ import { getWorkDirr } from '../data/getWorkDirr.js';
 
 export const compress = async (props) => {
   const [file, dirrectory] = props.split(' ');
-  const currentFile = getPath(file);
-  const currentDirr = getPath(dirrectory);
 
   try {
+    const currentFile = getPath(file);
+    const currentDirr = getPath(dirrectory);
     const input = await createReadStream(currentFile);
     const output = await createWriteStream(currentDirr);
     const gzip = zlib.createBrotliCompress();
@@ -18,9 +18,9 @@ export const compress = async (props) => {
         console.log('Operation failed');
       }
     });
-    console.log('Success!');
-    console.log(getWorkDirr(process.cwd()));
   } catch (error) {
     console.log('Operation failed');
+  } finally {
+    console.log(getWorkDirr(process.cwd()));
   }
 };
