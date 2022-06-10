@@ -1,4 +1,5 @@
 import os from 'os';
+import { chdir } from 'process';
 import { getGreetingPhrase } from './src/data/getGreetingPhrase.js';
 import { getName } from './src/data/getName.js';
 import { getWorkDirr } from './src/data/getWorkDirr.js';
@@ -9,6 +10,7 @@ const fileManager = () => {
   const greetingPhrase = getGreetingPhrase(userName);
   const homeDir = os.homedir();
   const pathMessage = getWorkDirr(homeDir);
+  const currentDir = chdir(homeDir);
 
   startReadlineProcess().catch((err) => {
     console.error('Operation failed');

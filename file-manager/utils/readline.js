@@ -7,6 +7,11 @@ import { getName } from '../src/data/getName.js';
 import { ls } from '../src/navigation/ls.js';
 import { cat } from '../src/operation/cat.js';
 import { getOtherArgs } from './getOtherArgs.js';
+import { add } from '../src/operation/add.js';
+import { rn } from '../src/operation/rn.js';
+import { cp } from '../src/operation/cp.js';
+import { mv } from '../src/operation/mv.js';
+import { rm } from '../src/operation/rm.js';
 
 export const readline = ReadLine.createInterface({
   input: stdin,
@@ -31,6 +36,21 @@ export const startReadlineProcess = async () => {
           case 'cat':
             cat(getOtherArgs(command));
             break;
+          case 'add':
+            add(getOtherArgs(command));
+            break;
+          case 'rn':
+            rn(getOtherArgs(command));
+            break;
+          case 'cp':
+            cp(getOtherArgs(command));
+            break;
+          case 'mv':
+            mv(getOtherArgs(command));
+            break;
+          case 'rm':
+            rm(getOtherArgs(command));
+            break;
           case 'exit':
           case '.exit':
             process.stdout.write(getByePhrase(getName()));
@@ -44,6 +64,8 @@ export const startReadlineProcess = async () => {
         process.stdout.write(getByePhrase(getName()));
       });
   } catch (error) {
-    console.error('Operation failed');
+    readline.on('pause', () => {
+      console.log('Readline paused.');
+    });
   }
 };
