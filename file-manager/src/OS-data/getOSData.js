@@ -8,7 +8,7 @@ export const getOSData = async (prop) => {
         break;
       case '--cpus':
         cpus().map((cpu) => {
-          console.log({ core: cpu.model, speed: cpu.speed });
+          console.log({ core: cpu.model, speed: Number((cpu.speed / 1000).toFixed(1)) });
         });
         break;
       case '--homedir':
