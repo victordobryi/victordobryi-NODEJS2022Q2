@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start:prod": "webpack",
-    "start:dev": "nodemon"
+    "start:dev": "nodemon",
+    "lint": "eslint src"
   },
   "repository": {
     "type": "git",
@@ -20,10 +21,17 @@
   "homepage": "https://github.com/victordobryi/victordobryi-NODEJS2022Q2#readme",
   "devDependencies": {
     "@types/node": "^17.0.43",
+    "@typescript-eslint/eslint-plugin": "^5.28.0",
+    "@typescript-eslint/parser": "^5.28.0",
+    "eslint": "^8.17.0",
     "nodemon": "^2.0.16",
     "ts-loader": "^9.3.0",
     "ts-node": "^10.8.1",
     "typescript": "^4.7.3",
     "webpack-cli": "^4.10.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "uuid": "^8.3.2"
   }
 }
