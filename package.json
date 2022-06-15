@@ -1,0 +1,29 @@
+{
+  "name": "victordobryi-nodejs2022q2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:prod": "webpack",
+    "start:dev": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/victordobryi/victordobryi-NODEJS2022Q2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/victordobryi/victordobryi-NODEJS2022Q2/issues"
+  },
+  "homepage": "https://github.com/victordobryi/victordobryi-NODEJS2022Q2#readme",
+  "devDependencies": {
+    "@types/node": "^17.0.43",
+    "nodemon": "^2.0.16",
+    "ts-loader": "^9.3.0",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.3",
+    "webpack-cli": "^4.10.0"
+  }
+}
