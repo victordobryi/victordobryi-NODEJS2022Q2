@@ -6,7 +6,8 @@
     "target": "ES5",
     "allowJs": true,
     "moduleResolution": "node",
-    "sourceMap": true
+    "sourceMap": true,
+    "resolveJsonModule": true
   },
   "ts-node": {
     "esm": true
