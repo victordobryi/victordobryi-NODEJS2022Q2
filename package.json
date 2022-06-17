@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:prod": "webpack",
-    "start:dev": "nodemon",
+    "start:prod": "webpack && node dist/bundle.js",
+    "start:dev": "nodemon --mode development",
     "lint": "eslint src"
   },
   "repository": {
