@@ -18,7 +18,7 @@ enum Methods {
   DELETE = 'DELETE',
 }
 
-const server = http.createServer((req, res) => {
+export const server = http.createServer((req, res) => {
   if (req.url === '/api/users' && req.method === Methods.GET) {
     getUsers({ req, res });
   } else if (isValidateURL(req) && req.method === Methods.GET) {
