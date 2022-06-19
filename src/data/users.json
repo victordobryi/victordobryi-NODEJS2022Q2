@@ -1,1 +1,8 @@
-[{"id":"ed83a4b7-3982-4826-b85a-0afefec7b387","username":"User","hobbies":["JS"],"age":25}]
+[
+  {
+    "id": "3d2dc3c2-8c78-4fea-85f0-24f064327a91",
+    "username": "User",
+    "hobbies": ["JS"],
+    "age": 25
+  }
+]
