@@ -11,6 +11,11 @@ import { isValidateURL } from './utils/isValidateURL';
 import { getIDfromURL } from './utils/getIDfromURL';
 dotenv.config();
 
+import * as notReallyCluster from 'cluster';
+const cluster = notReallyCluster as unknown as notReallyCluster.Cluster;
+import { cpus } from 'os';
+const numCPUs = cpus().length;
+
 enum Methods {
   GET = 'GET',
   POST = 'POST',
@@ -38,6 +43,20 @@ export const server = http.createServer((req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 8000;
+if (cluster.isPrimary) {
+  console.log(`Primary ${process.pid} is running`);
 
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
+
+  cluster.on('exit', (worker, code, signal) => {
+    console.log(`worker ${worker.process.pid} died`);
+  });
+} else {
+  const PORT = process.env.PORT || 8000;
+
+  server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+  console.log(`Worker ${process.pid} started`);
+}
