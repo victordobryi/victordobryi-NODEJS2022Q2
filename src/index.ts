@@ -1,9 +1,10 @@
 import * as Jimp from 'jimp';
 import { httpServer } from './http_server/index';
-import * as robot from 'robotjs';
 import * as dotenv from 'dotenv';
-import { WebSocket, WebSocketServer } from 'ws';
+import { WebSocketServer } from 'ws';
+import { sortDataToFunc } from './utils/sortDataToFunc';
 dotenv.config();
+import * as robot from 'robotjs';
 
 const HTTP_PORT = process.env.PORT || 8000;
 
@@ -17,8 +18,14 @@ wss.on('connection', (ws) => {
   ws.send('Welcome new client');
 
   ws.on('message', (message) => {
-    console.log(message);
-    ws.send('Got your message its:' + message);
+    if (message.toString('utf-8').split(' ')[0] === 'mouse_position') {
+      const position = robot.getMousePos();
+      const { x, y } = position;
+      ws.send(`mouse_position ${x},${y}`);
+    } else {
+      sortDataToFunc(message.toString('utf-8'));
+      ws.send(message.toString('utf-8'));
+    }
   });
 
   ws.on('error', (err) => {
