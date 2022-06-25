@@ -3,14 +3,14 @@ import { mouseMove } from './mouseMove';
 
 export const sortDataToFunc = (data: string) => {
   const commandCategory = data.split('_')[0];
-  const command = data.split(' ')[0];
-  const commandValue = data.split(' ')[1];
+  const commandData = data.split(' ');
+  const [command, firstParam, secondParam] = commandData;
   switch (commandCategory) {
     case 'mouse':
-      mouseMove(command, +commandValue);
+      mouseMove(command, +firstParam);
       break;
     case 'draw':
-      drawFigure(command, commandValue);
+      drawFigure(command, +firstParam, +secondParam);
       break;
     default:
       break;

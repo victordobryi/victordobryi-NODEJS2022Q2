@@ -1,8 +1,9 @@
 import * as robot from 'robotjs';
 
 export const mouseMove = (command: string, commandValue: number) => {
-  const position = robot.getMousePos();
-  const { x, y } = position;
+  const mousePos = robot.getMousePos();
+  const { x, y } = mousePos;
+
   switch (command) {
     case 'mouse_up':
       robot.moveMouse(x, y - commandValue);

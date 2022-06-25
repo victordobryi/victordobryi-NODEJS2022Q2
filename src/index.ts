@@ -18,6 +18,7 @@ wss.on('connection', (ws) => {
   ws.send('Welcome new client');
 
   ws.on('message', (message) => {
+    console.log(message.toString('utf-8'));
     if (message.toString('utf-8').split(' ')[0] === 'mouse_position') {
       const position = robot.getMousePos();
       const { x, y } = position;
