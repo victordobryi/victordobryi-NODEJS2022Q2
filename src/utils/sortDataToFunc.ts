@@ -1,5 +1,6 @@
 import { drawFigure } from './drawFigure';
 import { mouseMove } from './mouseMove';
+import { printScreen } from './printScreen';
 
 export const sortDataToFunc = (data: string) => {
   const commandCategory = data.split('_')[0];
@@ -12,6 +13,7 @@ export const sortDataToFunc = (data: string) => {
     case 'draw':
       drawFigure(command, +firstParam, +secondParam);
       break;
+
     default:
       break;
   }
