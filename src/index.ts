@@ -32,7 +32,7 @@ wss.on('connection', (ws) => {
     } else if (message.toString('utf-8').split(' ')[0] === 'prnt_scrn') {
       try {
         console.log(`Received: prnt_scrn`);
-        ws.send(`${message.toString('utf-8')} ${await printScreen()}`);
+        ws.send(`${message.toString('utf-8')} ${await printScreen()}\0`);
       } catch (error) {
         console.log(`Result: prnt_scrn not completed Error`);
       } finally {
