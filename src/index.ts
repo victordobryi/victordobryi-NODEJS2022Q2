@@ -16,7 +16,6 @@ const wss = new WebSocketServer({ port: 8080 });
 wss.on('connection', (ws) => {
   console.log('A new client connected');
   ws.send('Welcome new client');
-
   ws.on('message', async (message) => {
     if (message.toString('utf-8').split(' ')[0] === 'mouse_position') {
       const position = robot.getMousePos();
