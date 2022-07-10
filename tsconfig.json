@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "noImplicitAny": true,
+    "module": "CommonJS",
+    "target": "ES5",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "resolveJsonModule": true
+  },
+  "ts-node": {
+    "esm": true
+  },
+  "include": ["src/**/*.ts"]
+}
